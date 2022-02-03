@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 
-const About = () => {
+const MarketPlace = () => {
   return (
     <Grid container>
       <Typography variant="h1" component="h2">
@@ -11,4 +11,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default MarketPlace;
