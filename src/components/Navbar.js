@@ -1,7 +1,6 @@
 import React from "react";
-import { AppBar, Toolbar, IconButton, Button ,Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Button ,Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
 import { Link, BrowserRouter as Router } from "react-router-dom";
 import img from '../images/logo.png';
 import { useHistory } from "react-router-dom";

@@ -5,7 +5,6 @@ import { BrowserRouter as Router,  Switch, Route } from "react-router-dom";
 import MarketPlace from "./pages/MarketPlace";
 import Home from "./pages/Home";
 import MyTokens from './pages/MyTokens';
-import {withRouter} from 'react-router';
 import {createBrowserHistory} from 'history';
 
 export const customHistory = createBrowserHistory();  //This maintains custom history
@@ -34,8 +33,5 @@ function App() {
   );
 }
 
-function Users() {
-  return <h2>Users</h2>;
-}
 
 export default App;

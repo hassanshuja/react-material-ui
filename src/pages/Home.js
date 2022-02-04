@@ -1,8 +1,5 @@
 import React from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import {withRouter} from 'react-router';
 
 
@@ -19,7 +16,7 @@ const Home = () => {
     >
 
       <Grid item xs={6}>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="img"/>
         <Typography variant="h4" component="h4">
           Minting Goes Live: Dec 4, 2022 5 PM UTC
         </Typography>

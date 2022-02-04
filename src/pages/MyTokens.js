@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,8 +16,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { green } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import CardActions from '@material-ui/core/CardActions';
-import { Block } from '@material-ui/icons';
 
 function getModalStyle() {
     const top = 5;
@@ -77,14 +75,18 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     float:'right'
+  },
+  carding: {
+    display:'flex',
+    justifyContent:'center',
+    gap: '5rem'
   }
 
 }));
 
-
+//this is for setting up card functionality
 export default function MediaCard() {
   const classes = useStyles();
-  const theme = useTheme();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({
@@ -94,22 +96,44 @@ export default function MediaCard() {
     checkedG: true,
   });
 
+  const [data, setData] = React.useState({});
+
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
-  const handleOpen = () => {
+
+  //open modal and set value of each pop up of NFT
+  const handleOpen = (val) => {
+    console.log(val)
+    setData(val)
     setOpen(true);
   };
 
+  //this will close the modal
   const handleClose = () => {
     setOpen(false);
   };
+
+//This is the api data will come from backend
+  const apiData = [{
+    'title': 'Rabbit #5155', 
+  }, {
+    'title': 'Rabbit #5156', 
+  },
+  {
+    'title': 'Rabbit #5157', 
+  }]
+
+  //This is the pop up open after clicking on card of nft
   const body = (
 
     <Card className={classes.root} style={modalStyle}>
+      {data && data.title ?
         <CardHeader
+          title={data.title}
+        /> : <CardHeader
         title="Redacted Rabit # 513"
-      />
+      />}
       <CardMedia
         className={classes.cover}
         image={placeholder}
@@ -164,22 +188,28 @@ export default function MediaCard() {
   );
 
   return (
-    <div>
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleOpen}>
-        <CardMedia
-        style={{width:250, height:250}}
-          className={classes.media}
-          image={placeholder}
-          title="Rabbit"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Rabbit # 513
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    //This is the iteration of all 3 cards on the basis of apidata coming from backend
+    <div className={classes.carding}>
+
+{apiData && apiData.map((item, index) => (
+             //This does ifre                       
+      <Card className={classes.root} key={index}>
+        <CardActionArea onClick={() => handleOpen(item)}>
+          <CardMedia
+          style={{width:250, height:250}}
+            className={classes.media}
+            image={placeholder}
+            title="Rabbit"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {item.title}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card> )  
+        )}
+    
     <Modal
         open={open}
         onClose={handleClose}
